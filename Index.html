@@ -283,7 +283,8 @@
                 if (state.sheetUrl) {
                     app.fetchSheetData(state.sheetUrl);
                 } else {
-                    app.log("Waiting for data connection...");
+                    app.log("No Sheet URL found. Loading robust demo data...");
+                    app.loadDemoData(); 
                 }
                 app.initRestockDropdown();
                 app.log("System Initialized.");
@@ -392,6 +393,8 @@
                         console.error(err);
                         app.log("CSV Error: " + err.message);
                         document.getElementById('sync-status').innerText = "🔴 Failed";
+                        app.log("Switching to Demo Data...");
+                        app.loadDemoData();
                     }
                 });
             },
